@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "library_collections",
+  "info": {
+    "singularName": "library-collection",
+    "pluralName": "library-collections",
+    "displayName": "library-collection"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "books": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::book.book",
+      "mappedBy": "library_collections"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
