@@ -1,10 +1,22 @@
-import type { Core } from '@strapi/strapi';
-
-const config: Core.Config.Middlewares = [
+export default [
   'strapi::logger',
   'strapi::errors',
-  'strapi::security',
-  'strapi::cors',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: false,
+    },
+  },
+  {
+    name: 'strapi::cors',
+    config: {
+      enabled: true,
+      origin: '*',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD'],
+      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+      keepHeaderOnError: true,
+    },
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
@@ -12,5 +24,3 @@ const config: Core.Config.Middlewares = [
   'strapi::favicon',
   'strapi::public',
 ];
-
-export default config;

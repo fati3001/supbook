@@ -2,6 +2,11 @@ const API_URL = import.meta.env.VITE_API_URL
 
 const getToken = () => localStorage.getItem('token')
 
+const getUserId = () => {
+  const user = localStorage.getItem('user')
+  return user ? JSON.parse(user).id : null
+}
+
 const headers = () => ({
   'Content-Type': 'application/json',
   Authorization: `Bearer ${getToken()}`,
@@ -121,8 +126,5 @@ export const reviewService = {
     }).then(handleResponse),
 }
 
-const getUserId = () => {
-  const user = localStorage.getItem('user')
-  return user ? JSON.parse(user).id : null
-}
+
 

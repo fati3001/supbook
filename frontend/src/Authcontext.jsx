@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     const storedToken = localStorage.getItem('token')
     const storedUser = localStorage.getItem('user')
     if (storedToken && storedUser) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setToken(storedToken)
       setUser(JSON.parse(storedUser))
     }
@@ -39,4 +40,5 @@ export const AuthProvider = ({ children }) => {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext)
