@@ -38,7 +38,7 @@ export const authService = {
 
 export const bookService = {
   getAll: () =>
-    fetch(`${API_URL}/api/books?populate=author,review,library_collections&filters[users_permissions_user][id][$eq]=${getUserId()}`, {
+    fetch(`${API_URL}/api/books?populate[0]=author&populate[1]=review&populate[2]=library_collections`, {
       headers: headers(),
     }).then(handleResponse),
 
@@ -79,7 +79,7 @@ export const authorService = {
 
 export const collectionService = {
   getAll: () =>
-    fetch(`${API_URL}/api/library-collections?populate=books&filters[users_permissions_user][id][$eq]=${getUserId()}`, {
+    fetch(`${API_URL}/api/library-collections?populate[0]=books`, {
       headers: headers(),
     }).then(handleResponse),
 
@@ -125,6 +125,3 @@ export const reviewService = {
       headers: headers(),
     }).then(handleResponse),
 }
-
-
-

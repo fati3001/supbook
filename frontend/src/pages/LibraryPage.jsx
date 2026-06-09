@@ -20,12 +20,10 @@ const LibraryPage = () => {
   const [statusFilter, setStatusFilter] = useState('all')
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/immutability
     fetchBooks()
   }, [])
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/immutability
     filterBooks()
   }, [books, search, statusFilter])
 
@@ -73,14 +71,12 @@ const LibraryPage = () => {
         reading_status: formData.reading_status,
         rating: formData.rating,
         author: authorId || null,
-        user: user.id,
       }
       const newBook = await bookService.create(bookData)
       if (formData.reviewContent) {
         await reviewService.create({
           content: formData.reviewContent,
           book: newBook.data.id,
-          users_permissions_user: user.id,
         })
       }
       await fetchBooks()
@@ -98,7 +94,7 @@ const LibraryPage = () => {
         const newAuthor = await authorService.create({ name: formData.newAuthorName })
         authorId = newAuthor.data.id
       }
-      await bookService.update(selectedBook.id, {
+      await bookService.update(selectedBook.documentId, {
         title: formData.title,
         cover_url: formData.cover_url,
         year: formData.year,
@@ -107,14 +103,13 @@ const LibraryPage = () => {
         author: authorId || null,
       })
       if (formData.reviewContent && selectedBook.review) {
-        await reviewService.update(selectedBook.review.id, {
+        await reviewService.update(selectedBook.review.documentId, {
           content: formData.reviewContent,
         })
       } else if (formData.reviewContent && !selectedBook.review) {
         await reviewService.create({
           content: formData.reviewContent,
-          book: selectedBook.id,
-          users_permissions_user: user.id,
+          book: selectedBook.documentId,
         })
       }
       await fetchBooks()
@@ -126,12 +121,12 @@ const LibraryPage = () => {
     }
   }
 
-  const handleDeleteBook = async (id) => {
+  const handleDeleteBook = async (documentId) => {
     if (!window.confirm('Supprimer ce livre ?')) return
     try {
-      await bookService.delete(id)
-      setBooks((prev) => prev.filter((b) => b.id !== id))
+      await bookService.delete(documentId)
       showNotification('Livre supprimé', 'success')
+      setBooks((prev) => prev.filter((b) => b.documentId !== documentId))
     } catch {
       showNotification('Erreur lors de la suppression', 'error')
     }
@@ -196,7 +191,7 @@ const LibraryPage = () => {
             <BookCard
               key={book.id}
               book={book}
-              onDelete={handleDeleteBook}
+              onDelete={() => handleDeleteBook(book.documentId)}
               onUpdate={openEditModal}
             />
           ))}
