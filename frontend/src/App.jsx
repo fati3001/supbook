@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './AuthContext'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import LibraryPage from './pages/LibraryPage'
+import CollectionsPage from './pages/CollectionsPage'
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth()
@@ -23,6 +24,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <LibraryPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/collections"
+            element={
+              <ProtectedRoute>
+                <CollectionsPage />
               </ProtectedRoute>
             }
           />

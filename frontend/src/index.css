@@ -200,6 +200,23 @@ button[type='submit']:disabled {
   font-size: 1.5rem;
 }
 
+.header-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.nav-link:hover {
+  background: var(--surface2);
+}
+
 .header-right {
   display: flex;
   align-items: center;
@@ -491,6 +508,132 @@ button[type='submit']:disabled {
   color: var(--text-muted);
 }
 
+/* COLLECTIONS */
+.collections-container {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.collections-sidebar {
+  width: 280px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem;
+  flex-shrink: 0;
+}
+
+.collections-sidebar h2 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.create-collection-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.create-collection-form input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.create-collection-form button {
+  padding: 0.5rem 0.75rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  width: auto;
+}
+
+.collections-list {
+  list-style: none;
+}
+
+.collection-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 0.25rem;
+}
+
+.collection-item:hover {
+  background: var(--surface2);
+}
+
+.collection-item.active {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-delete-small {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0.25rem;
+  width: auto;
+  border-radius: 4px;
+}
+
+.btn-delete-small:hover {
+  color: var(--danger);
+}
+
+.collections-main {
+  flex: 1;
+  padding: 2rem;
+}
+
+.collections-main h2 {
+  margin-bottom: 1.5rem;
+}
+
+.add-book-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.add-book-form select {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.add-book-form button {
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: auto;
+}
+
+.empty-text {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2rem;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .library-header {
@@ -511,5 +654,19 @@ button[type='submit']:disabled {
 
   .auth-card {
     padding: 1.5rem;
+  }
+
+  .collections-container {
+    flex-direction: column;
+  }
+
+  .collections-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-nav {
+    display: none;
   }
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
 import { bookService, authorService, reviewService } from '../services/api'
 import BookCard from '../components/BookCard'
@@ -153,6 +153,10 @@ const LibraryPage = () => {
       <Notification message={notification.message} type={notification.type} />
       <header className="library-header">
         <h1>SupBook</h1>
+        <nav className="header-nav">
+          <Link to="/library" className="nav-link">Ma bibliothèque</Link>
+          <Link to="/collections" className="nav-link">Collections</Link>
+        </nav>
         <div className="header-right">
           <span>Bonjour, {user?.username}</span>
           <button onClick={handleLogout}>Se déconnecter</button>
