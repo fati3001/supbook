@@ -7,7 +7,7 @@
     "displayName": "library-collection"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

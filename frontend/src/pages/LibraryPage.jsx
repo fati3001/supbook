@@ -57,6 +57,8 @@ const LibraryPage = () => {
     setTimeout(() => setNotification({ message: '', type: '' }), 3000)
   }
 
+  const wait = (ms = 800) => new Promise((resolve) => setTimeout(resolve, ms))
+
   const handleAddBook = async (formData) => {
     try {
       let authorId = formData.author
@@ -79,9 +81,10 @@ const LibraryPage = () => {
           book: newBook.data.id,
         })
       }
-      await fetchBooks()
       setShowModal(false)
       showNotification('Livre ajouté avec succès !', 'success')
+      await wait()
+      await fetchBooks()
     } catch {
       showNotification("Erreur lors de l'ajout du livre", 'error')
     }
@@ -112,10 +115,23 @@ const LibraryPage = () => {
           book: selectedBook.documentId,
         })
       }
-      await fetchBooks()
       setShowModal(false)
       setSelectedBook(null)
       showNotification('Livre modifié avec succès !', 'success')
+      setBooks((prev) => prev.map((b) =>
+        b.documentId === selectedBook.documentId
+          ? {
+              ...b,
+              title: formData.title,
+              cover_url: formData.cover_url,
+              year: formData.year,
+              reading_status: formData.reading_status,
+              rating: formData.rating,
+            }
+          : b
+      ))
+      await wait()
+      await fetchBooks()
     } catch {
       showNotification('Erreur lors de la modification', 'error')
     }
@@ -127,6 +143,8 @@ const LibraryPage = () => {
       await bookService.delete(documentId)
       showNotification('Livre supprimé', 'success')
       setBooks((prev) => prev.filter((b) => b.documentId !== documentId))
+      await wait()
+      await fetchBooks()
     } catch {
       showNotification('Erreur lors de la suppression', 'error')
     }

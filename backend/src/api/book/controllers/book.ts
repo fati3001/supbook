@@ -14,28 +14,10 @@ export default factories.createCoreController('api::book.book', ({ strapi }) => 
   },
 
   async update(ctx) {
-    const user = ctx.state.user
-    const { id } = ctx.params
-    const book = await strapi.documents('api::book.book').findOne({
-      documentId: id,
-      populate: ['users_permissions_user'],
-    }) as any
-    if (!book || book.users_permissions_user?.id !== user.id) {
-      return ctx.forbidden()
-    }
     return super.update(ctx)
   },
 
   async delete(ctx) {
-    const user = ctx.state.user
-    const { id } = ctx.params
-    const book = await strapi.documents('api::book.book').findOne({
-      documentId: id,
-      populate: ['users_permissions_user'],
-    }) as any
-    if (!book || book.users_permissions_user?.id !== user.id) {
-      return ctx.forbidden()
-    }
     return super.delete(ctx)
   },
 }))
