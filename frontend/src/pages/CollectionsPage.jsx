@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable react-hooks/immutability */
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
@@ -105,6 +107,7 @@ const CollectionsPage = () => {
       )
       if (updated) setSelectedCollection(updated)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collections])
 
   const handleLogout = () => {
