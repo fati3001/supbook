@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/immutability */
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
@@ -25,6 +26,7 @@ const LibraryPage = () => {
 
   useEffect(() => {
     filterBooks()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [books, search, statusFilter])
 
   const fetchBooks = async () => {

@@ -1,16 +1,81 @@
-# React + Vite
+# SupBook — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface utilisateur construite avec React 19 et Vite.
 
-Currently, two official plugins are available:
+# Prérequis
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js v18+
+- npm
+- Backend Strapi lancé sur le port 1337
 
-## React Compiler
+# Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+# Variables d'environnement
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Créer un fichier `.env` à la racine du dossier frontend :
+VITE_API_URL=http://localhost:1337
+
+# Lancer l'application
+
+```bash
+npm run dev
+```
+
+Accès : http://localhost:5174
+
+# Structure du projet
+12:02
+
+Parfait !  Le backend README est bon.
+
+Maintenant ouvre frontend/README.md et colle ce contenu :
+markdown
+
+# SupBook — Frontend
+
+Interface utilisateur construite avec React 19 et Vite.
+
+# Prérequis
+
+- Node.js v18+
+- npm
+- Backend Strapi lancé sur le port 1337
+
+# Installation
+
+```bash
+npm install
+```
+
+# Variables d'environnement
+
+Créer un fichier `.env` à la racine du dossier frontend :
+
+VITE_API_URL=http://localhost:1337
+
+
+# Lancer l'application
+
+```bash
+npm run dev
+```
+
+Accès : http://localhost:5174
+
+# Structure du projet
+
+src/
+├── components/ # Composants réutilisables
+├── pages/ # Pages de l'application
+├── services/ # Appels API
+└── hooks/ # Hooks personnalisés
+# Pages
+
+- `/login` — Connexion
+- `/register` — Inscription
+- `/library` — Bibliothèque personnelle
+- `/collections` — Gestion des collections
